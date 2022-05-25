@@ -16,6 +16,14 @@ function Home() {
 
     await setCountries(data);
   };
+  const searchCountryByName = async (countryName) => {
+    if (countryName.length < 3 || countryName === '') return;
+    const res = await fetch(
+      `https://restcountries.com/v3.1/name/${countryName}`
+    );
+    const data = await res.json();
+    await setCountries(data);
+  };
 
   return (
     <div>
@@ -24,16 +32,16 @@ function Home() {
         <input
           type="text"
           placeholder="Filter Countries by Name"
-          // onChange={(countryName) =>
-          //   searchCountryByName(countryName.target.value)
-          // }
+          onChange={(countryName) =>
+            searchCountryByName(countryName.target.value)
+          }
           className="pl-10 p-2 shadow-md rounded-3xl w-9/12  m-2 border-slate-600 col-span-3"
         />
       </div>
 
       <div className=" grid grid-cols-4 gap-2">
         {countries.map((country, index) => (
-          <Link to={{ pathname: 'details', state: country }} key={index}>
+          <Link to={'/Details'} state={country} key={index}>
             <ThumbInfo
               countryFlag={country.flags.png}
               countryCode={country.cca2}

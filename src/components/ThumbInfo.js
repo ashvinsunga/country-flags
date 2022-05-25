@@ -17,8 +17,8 @@ export default function ThumbInfo({
           <span className="text-gray-700">{countryName}</span>
         </p>
         <p className="text-xs">
-          {countryTimezones.map((timezone) => (
-            <span>
+          {countryTimezones.map((timezone, index) => (
+            <span key={index}>
               {' '}
               {countryTimezones.length > 1 ? timezone + ',' : timezone}
             </span>
