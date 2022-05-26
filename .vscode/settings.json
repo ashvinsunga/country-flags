@@ -3,5 +3,6 @@
     "plaintext": "javascript",
     "html": "HTML"
   },
-  "tailwindCSS.experimental.classRegex": []
+  "tailwindCSS.experimental.classRegex": [],
+  "javascript.preferences.quoteStyle": "double"
 }
