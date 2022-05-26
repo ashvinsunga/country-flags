@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function ThumbInfo({
   countryFlag,
@@ -19,8 +19,8 @@ export default function ThumbInfo({
         <p className="text-xs">
           {countryTimezones.map((timezone, index) => (
             <span key={index}>
-              {' '}
-              {countryTimezones.length > 1 ? timezone + ',' : timezone}
+              {" "}
+              {countryTimezones.length > 1 ? timezone + "," : timezone}
             </span>
           ))}
         </p>
