@@ -1,8 +1,0 @@
-{
-  "tailwindCSS.includeLanguages": {
-    "plaintext": "javascript",
-    "html": "HTML"
-  },
-  "tailwindCSS.experimental.classRegex": [],
-  "javascript.preferences.quoteStyle": "double"
-}
