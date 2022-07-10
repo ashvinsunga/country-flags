@@ -5,6 +5,7 @@ import Spinner from '../components/Spinner';
 
 function Home() {
   const [countries, setCountries] = useState([]);
+  const [keyword, setKeyword] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,18 +20,6 @@ function Home() {
     await setCountries(data);
     setLoading(false);
   };
-  const searchCountryByName = async (countryName) => {
-    try {
-      if (countryName === '') return getCountries();
-      const res = await fetch(
-        `https://restcountries.com/v3.1/name/${countryName}`
-      );
-      const data = await res.json();
-      await setCountries(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   return (
     <div>
@@ -39,9 +28,7 @@ function Home() {
         <input
           type='text'
           placeholder='Filter Countries by Name'
-          onChange={(countryName) =>
-            searchCountryByName(countryName.target.value)
-          }
+          onChange={(e) => setKeyword(e.target.value)}
           className='pl-10 p-2 shadow-md rounded-3xl w-9/12  m-2 border-slate-600 col-span-3 sm:text-sm'
         />
       </div>
@@ -50,17 +37,29 @@ function Home() {
         <Spinner />
       ) : (
         <div className='grid gap-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-          {countries.map((country, index) => (
-            <Link to={'/Details'} state={country} key={index}>
-              <ThumbInfo
-                countryFlag={country.flags.png}
-                countryCode={country.cca2}
-                countryName={country.name.common}
-                countryTimezones={country.timezones}
-                countryCallingCode={country.ccn3}
-              />
-            </Link>
-          ))}
+          {countries
+            .filter((country) => {
+              if (keyword === '') {
+                return country;
+              } else if (
+                country.name.common
+                  .toLowerCase()
+                  .includes(keyword.toLowerCase())
+              ) {
+                return country;
+              }
+            })
+            .map((country, index) => (
+              <Link to={'/Details'} state={country} key={index}>
+                <ThumbInfo
+                  countryFlag={country.flags.png}
+                  countryCode={country.cca2}
+                  countryName={country.name.common}
+                  countryTimezones={country.timezones}
+                  countryCallingCode={country.ccn3}
+                />
+              </Link>
+            ))}
         </div>
       )}
     </div>
