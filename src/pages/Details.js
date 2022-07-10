@@ -10,6 +10,7 @@ function Details() {
   return (
     // Main container
     <div className="grid grid-rows-1 justify-items-center h-full mt-6">
+      
       {/* Flag and details*/}
       <div className="border-4 border-solid rounded-lg border-neutral-400 px-5 pb-8 w-1/4 h-fit sm:w-4/6 md:w-3/6 lg:w-2/3">
         <div className="grid grid-col-3 mt-5">
